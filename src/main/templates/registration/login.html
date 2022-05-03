@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %} {% block title %}Login{% endblock title %}
+<span></span>
+{% load crispy_forms_tags %}
+<span></span>
+{% block body %}
+<div class="login-form is-flex is-justify-content-center is-align-items-center">
+    <form method="post" class="box">
+        <h3 class="has-text-centered"><strong>Login</strong></h3>
+        {% csrf_token %} <br />
+        {{ form|crispy }}
+        <div
+            class="field is-flex is-align-items-center is-justify-content-space-between"
+        >
+            <a href="" class="tag is-link is-light">Forgot your password?</a>
+            <div class="control is-flex is-justify-content-end">
+                <button class="button is-link">Login</button>
+            </div>
+        </div>
+        <hr class="divider" />
+        <p>
+            don't have an account?
+            <a href="/signup" class="tag is-danger is-light">Sign up</a>
+        </p>
+    </form>
+</div>
+{% endblock body %}

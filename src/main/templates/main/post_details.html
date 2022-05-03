@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %} {% block title %}Post Details{% endblock title %}
+<span></span>
+{% block body %}
+<div class="columns">
+    <div class="column is-9">
+        <div
+            class="detail-page card is-flex is-flex-direction-column is-justify-content-space-between"
+        >
+            <div class="card-content">
+                <h3 class="title is-3">{{post_detail.title }}</h3>
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-48x48">
+                            <img
+                                src="https://bulma.io/images/placeholders/96x96.png"
+                                alt="Placeholder image"
+                            />
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="is-size-6">
+                            By: {{ post_detail.author.username}}
+                        </p>
+                        <time class="is-size-7 tag">
+                            {{post_detail.created_at}}</time
+                        >
+                    </div>
+                </div>
+
+                <div class="content">
+                    <article> {{post_detail.content}}</article>
+                    {% comment %} <ul>
+                        {% for post in post_detail.commnet %}
+                        <li> {{post.comment_content }} </li>
+                        
+                        {% endfor %}
+                    </ul> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <aside class="menu">
+            <p class="menu-label">General</p>
+            <ul class="menu-list">
+                <li><a>Dashboard</a></li>
+                <li><a>Customers</a></li>
+            </ul>
+        </aside>
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,71 @@
+@media screen and (min-width: 1024px){
+    .navbar {
+        min-height: 3.5rem;
+    }
+}
+.login-form form, .signup-form form{
+    width: 22rem;
+    border-top: 3px solid #e91e63
+}
+.login-form form label.label,
+.signup-form form label.label {        
+    font-size: .899rem !important;
+}
+.login-form form .label:not(:last-child),
+.signup-form form .label:not(:last-child) {
+    margin-bottom: 0em;
+}
+.login-form form .input {
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #485fc7;
+    border-radius: 0px;
+}
+/* ?: end ->  Styling account forms  */
+
+
+/* !: start -> Styling Cards */
+.card-deck {
+    gap: 1rem;
+    display: flex;
+}
+.card-deck .card {
+    width: 16rem;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.card-footer button {
+    background: transparent !important;
+    border-color: transparent !important;
+    color: #e91e63 !important;
+}
+.card-deck .card-footer form button.card-footer-item {
+    background: transparent !important;
+    border: 2px solid transparent !important;
+    font-size: 16px !important;
+    color: #3f51b5 !important;
+}
+/* ?: end -> Styling Cards */
+
+.navbar-item,
+.navbar-link {
+    font-size: .899rem;
+}
+.buttons .button:last-child {
+    border: 1px solid hsl(348, 100%, 61%);
+    background: transparent;
+    color: hsl(348, 100%, 61%);
+}
+.divider
+{
+    background:#eee;
+}
+
+/*   */
+.detail-page{
+    box-shadow:none !important
+}
+.detail-page .content{
+    line-height: 2 !important;
+    text-align:justify;
+}
