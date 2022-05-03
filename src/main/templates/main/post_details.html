@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %} {% block title %}Post Details{% endblock title %}
 <span></span>
-{% block body %}
+{% block body %} {% load crispy_forms_tags %}
 <div class="columns">
     <div class="column is-9">
         <div
@@ -28,16 +28,26 @@
                 </div>
 
                 <div class="content">
-                    <article> {{post_detail.content}}</article>
-                    {% comment %} <ul>
+                    <article>{{post_detail.content}}</article>
+                    {% comment %}
+                    <ul>
                         {% for post in post_detail.commnet %}
-                        <li> {{post.comment_content }} </li>
-                        
+                        <li>{{post.comment_content }}</li>
+
                         {% endfor %}
-                    </ul> {% endcomment %}
+                    </ul>
+                    {% endcomment %}
                 </div>
             </div>
         </div>
+        <form action="" method="post">
+            {{ form|crispy}}
+            <div class="field">
+                <div class="control">
+                    <button class="button">Post comment</button>
+                </div>
+            </div>
+        </form>
     </div>
     <div class="column">
         <aside class="menu">
