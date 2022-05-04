@@ -1,3 +1,8 @@
+.navbar-brand a.navbar-item strong {
+    font-weight: 900 !important;
+    color: #cddc39;
+    font-size: 1rem;
+}
 @media screen and (min-width: 1024px){
     .navbar {
         min-height: 4rem;
@@ -68,4 +73,15 @@
 .detail-page .content{
     line-height: 2 !important;
     text-align:justify;
+}
+
+/*  */
+h3.head {
+    border-bottom: 1px solid #eeeeee;
+    padding: .75rem 0px;
+    color: #7a7a7a;
+}
+.detail-page .card-content {
+    padding: 0px;
+    margin:0px  
 }

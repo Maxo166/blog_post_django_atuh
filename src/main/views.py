@@ -1,10 +1,10 @@
-from pyexpat.errors import messages
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.http import Http404
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import PostForm, RegisterForm, CommentForm
 from .models import Post
@@ -61,30 +61,24 @@ def post_details(request, id):
                       'comments': comments,
                       'form': form,
                   })
-# @login_required(login_url='/login')
-# def post_details(request, id):
-#     try:
-#         post_detail = Post.objects.get(pk=id)
-#     except post_detail.DoesNotExist:
-#         raise Http404(f"post with the id ({id}) is Not Found")
-#     if post_detail:
-#         comments = post_detail.comments.all()
-#         if request.method == 'POST':
-#             form = CommentForm(request.POST)
-#             if form.is_valid():
-#                 comment = form.save(commit=False)
-#                 comment.author = request.user
-#                 comment.post = post_detail
-#                 comment.save()
-#                 return redirect('/posts/id')
-#         else:
-#             form = CommentForm()
-#     return render(request, 'main/post_details.html',
-#                   {
-#                       'post_detail': post_detail,
-#                       'comments': comments,
-#                       'form': form,
-#                   })
+
+
+@login_required(login_url='/login')
+def update_post(request, id):
+    post = get_object_or_404(Post, id=id)
+
+    form = PostForm(request.POST or None, instance=post)
+    if form.is_valid:
+        post = form.save(commit=False)
+        post.save()
+        messages.success(request, "You successfully updated the post")
+        # return redirect('/index')
+    else:
+        messages.error(
+            'The form was not updated successfully. Please enter in a title and content')
+        form = PostForm()
+
+    return render(request, "main/edit-page.html", {'form': form})
 
 
 def signup(request):

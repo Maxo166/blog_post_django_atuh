@@ -77,8 +77,8 @@
                                     <time class="is-size-7 tag is-success is-light">{{comment.modified_at|date}} | {{comment.modified_at|time}}</time>
                                 </div>
                             </div>
-                            <ul>
-                                <li class="menu-list">
+                            <ul class="menu-list">
+                                <li class="">
                                     <p>{{ comment.comment_content }}</p>
                                 </li>
                             </ul>
@@ -92,12 +92,19 @@
         </section>
     </div>
     <div class="column">
-        <aside class="menu">
-            <p class="menu-label">General</p>
+        <aside class="menu box">
+            <p class="menu-label">Content</p>
             <ul class="menu-list">
                 <li><a>Dashboard</a></li>
                 <li><a>Customers</a></li>
             </ul>
+        </aside>
+        <aside class="menu box">
+            <p class="menu-label">related Topics</p>
+            <div>
+                <p class="block"><a>Dashboard</a></p>
+                <p class="block"><a>Customers</a></p>
+            </div>
         </aside>
     </div>
 </div>

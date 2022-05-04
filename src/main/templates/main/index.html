@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %} {% block title %}index{% endblock title %}
+{% extends 'main/base.html' %} {% block title %}Index{% endblock title %}
 <span></span>
 {% block body %}
 <div class="is-size-6">
@@ -35,8 +35,12 @@
         </div>
         <form action="" method="post">
             <footer class="card-footer">
-                <a href="#" class="card-footer-item">Save</a>
-                <a href="#" class="card-footer-item">Edit</a>
+                <a href="post_detail/{{post.id}}" class="card-footer-item"
+                    >View</a
+                >
+                <a href="edit_post/{{post.id}}" class="card-footer-item"
+                    >Edit</a
+                >
                 {% if user == post.author %} {% csrf_token %}
                 <button
                     type="submit"

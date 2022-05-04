@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %} {% block title %}Edit Post{% endblock title %}
+<span></span>
+{% load crispy_forms_tags %} {% block body %}
+<div>
+    <form action="" method="post">
+        {% csrf_token %} {{ form|crispy }}
+        <div class="feild">
+            <div class="control is-flex is-justify-content-flex-end">
+                <button type="submit" class="button is-dark">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock body %}
