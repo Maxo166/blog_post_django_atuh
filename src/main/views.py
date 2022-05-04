@@ -1,3 +1,4 @@
+from pyexpat.errors import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -5,7 +6,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.http import Http404
 from django.shortcuts import redirect, render
 
-from .forms import PostForm, RegisterForm
+from .forms import PostForm, RegisterForm, CommentForm
 from .models import Post
 
 # Create your views here.
@@ -42,7 +43,48 @@ def post_details(request, id):
         post_detail = Post.objects.get(pk=id)
     except post_detail.DoesNotExist:
         raise Http404(f"post with the id ({id}) is Not Found")
-    return render(request, 'main/post_details.html', {'post_detail': post_detail})
+    if post_detail:
+        comments = post_detail.comments.all().order_by('-created_at')
+        if request.method == 'POST':
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.author = request.user
+                comment.post = post_detail
+                comment.save()
+                return redirect(f'/posts/{id}')
+        else:
+            form = CommentForm()
+    return render(request, 'main/post_details.html',
+                  {
+                      'post_detail': post_detail,
+                      'comments': comments,
+                      'form': form,
+                  })
+# @login_required(login_url='/login')
+# def post_details(request, id):
+#     try:
+#         post_detail = Post.objects.get(pk=id)
+#     except post_detail.DoesNotExist:
+#         raise Http404(f"post with the id ({id}) is Not Found")
+#     if post_detail:
+#         comments = post_detail.comments.all()
+#         if request.method == 'POST':
+#             form = CommentForm(request.POST)
+#             if form.is_valid():
+#                 comment = form.save(commit=False)
+#                 comment.author = request.user
+#                 comment.post = post_detail
+#                 comment.save()
+#                 return redirect('/posts/id')
+#         else:
+#             form = CommentForm()
+#     return render(request, 'main/post_details.html',
+#                   {
+#                       'post_detail': post_detail,
+#                       'comments': comments,
+#                       'form': form,
+#                   })
 
 
 def signup(request):
@@ -51,7 +93,10 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            messages.success(request, 'new comment is added successfuly')
             return redirect('/index')
+        else:
+            messages.error(request, "invalid form")
     else:
         form = RegisterForm()
     return render(request, 'registration/signup.html', {'form': form})

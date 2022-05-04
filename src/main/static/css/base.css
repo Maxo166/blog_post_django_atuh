@@ -1,6 +1,6 @@
 @media screen and (min-width: 1024px){
     .navbar {
-        min-height: 3.5rem;
+        min-height: 4rem;
     }
 }
 .login-form form, .signup-form form{
