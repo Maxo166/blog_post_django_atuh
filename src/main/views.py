@@ -40,8 +40,8 @@ def create_post(request):
 @login_required(login_url='/login')
 def post_details(request, id):
     try:
-        post_detail = Post.objects.get(pk=id)
-    except post_detail.DoesNotExist:
+        post_detail = Post.objects.get(id=id)
+    except post_detail.DoesNotExist():
         raise Http404(f"post with the id ({id}) is Not Found")
     if post_detail:
         comments = post_detail.comments.all().order_by('-created_at')
@@ -52,7 +52,7 @@ def post_details(request, id):
                 comment.author = request.user
                 comment.post = post_detail
                 comment.save()
-                return redirect(f'/posts/{id}')
+                return redirect(f'/post_detail/{id}')
         else:
             form = CommentForm()
     return render(request, 'main/post_details.html',

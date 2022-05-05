@@ -2,7 +2,7 @@
 <span></span>
 {% block body %}
 <div class="is-size-6">
-    Post Count:
+    <span class="menu-label">Post Count:</span>
     <span class="tag is-success is-light">{{ posts|length }} posts</span>
 </div>
 <br />
@@ -35,7 +35,9 @@
         </div>
         <form action="" method="post">
             <footer class="card-footer">
-                <a href="post_detail/{{post.id}}" class="card-footer-item"
+                <a
+                    href="{% url 'post_details' post.id %}"
+                    class="card-footer-item"
                     >View</a
                 >
                 <a href="edit_post/{{post.id}}" class="card-footer-item"
