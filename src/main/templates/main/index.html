@@ -18,11 +18,16 @@
                         <img
                             src="https://bulma.io/images/placeholders/96x96.png"
                             alt="Placeholder image"
+                            class="is-rounded"
                         />
                     </figure>
                 </div>
                 <div class="media-content">
-                    <p class="is-size-6">By: {{ post.author.username}}</p>
+                    <p>
+                        <a href="" class="is-size-6"
+                            >By: {{ post.author.username}}</a
+                        >
+                    </p>
                     <time class="is-size-7 tag"> {{post.created_at|date}}</time>
                 </div>
             </div>
@@ -40,10 +45,11 @@
                     class="card-footer-item"
                     >View</a
                 >
+                {% if user == post.author %}
                 <a href="edit_post/{{post.id}}" class="card-footer-item"
                     >Edit</a
                 >
-                {% if user == post.author %} {% csrf_token %}
+                {% csrf_token %}
                 <button
                     type="submit"
                     name="post-id"

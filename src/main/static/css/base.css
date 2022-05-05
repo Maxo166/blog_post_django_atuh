@@ -38,6 +38,7 @@
     width: 16rem;
     flex-grow: 1;
     flex-shrink: 1;
+    max-width: 35rem;
 }
 .card-footer button {
     background: transparent !important;
@@ -84,4 +85,12 @@ h3.head {
 .detail-page .card-content {
     padding: 0px;
     margin:0px  
+}
+div.field label.label span.asterisk{
+    color:#f14668 !important;
+}
+
+a.user-link {
+    padding: 0px;
+    text-decoration: underline;
 }

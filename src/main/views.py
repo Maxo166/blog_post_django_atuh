@@ -5,9 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
-
 from .forms import PostForm, RegisterForm, CommentForm
-from .models import Post
+from .models import Post, Comment
 
 # Create your views here.
 
@@ -55,12 +54,12 @@ def post_details(request, id):
                 return redirect(f'/post_detail/{id}')
         else:
             form = CommentForm()
-    return render(request, 'main/post_details.html',
-                  {
-                      'post_detail': post_detail,
-                      'comments': comments,
-                      'form': form,
-                  })
+        context = {
+            'post_detail': post_detail,
+            'comments': comments,
+            'form': form,
+        }
+    return render(request, 'main/post_details.html', context)
 
 
 @login_required(login_url='/login')

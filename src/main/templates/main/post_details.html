@@ -14,6 +14,7 @@
                             <img
                                 src="https://bulma.io/images/placeholders/96x96.png"
                                 alt="Placeholder image"
+                                class="is-rounded"
                             />
                         </figure>
                     </div>
@@ -61,28 +62,58 @@
                     <p class="menu-label">Comments: 
                         <samll class="tag is-danger is-light">{{ comments|length }}</small></p>
                     <ul class="menu-list">
-                        {% for comment in comments %}
-                        <li>
-                            <div class="media">
-                                <div class="media-left">
-                                    <figure class="image is-32x32">
-                                        <img
-                                            src="https://bulma.io/images/placeholders/96x96.png"
-                                            alt="Placeholder image"
-                                        />
-                                    </figure>
+                        {% for comment in comments %}                    
+                        <article class="media">
+                            <figure class="media-left">
+                                <p class="image is-32x32">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png" class="is-rounded">
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    
+                                        <div class="is-flex">
+                                            <a href="" class="user-link has-text-link">{{comment.author.username }} </a> 
+                                            <small class="px-3 has-text-grey-light">|</small>
+                                            <small class="tag">{{comment.modified_at}}</small> 
+                                        </div>                                       
+                                        {{ comment.comment_content }}
+                                    
                                 </div>
-                                <div class="media-content">
-                                    <p class="is-size-6">{{ comment.author.username}}</p>
-                                    <time class="is-size-7 tag is-success is-light">{{comment.modified_at|date}} | {{comment.modified_at|time}}</time>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">                                    
+                                        <small class="is-flex">
+                                            <a class="level-item has-text-link pl-0" href="">Like</a> <strong> . </strong> 
+                                            <a class="level-item has-text-link" href="">Reply</a>
+                                        </small>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="media-right">
+                                <div class="dropdown is-right is-hoverable">
+                                    <div class="dropdown-trigger">
+                                        <button class="button is-white is-samll pr-0" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                        <span>{% include "main/feather-vertical-more-icon.html" %}</span>
+                                        
+                                        </button>
+                                    </div>
+                                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                                        <div class="dropdown-content">
+                                            {% if user == comment.author %}
+                                                <a href="" class="dropdown-item"
+                                                    name="edit-comment-btn"
+                                                    value="{{ comment.id }}">Edit</a>
+                                                <a href="" class="dropdown-item is-delete">Delete</a>
+                                                <div class="dropdown-divider"></div>
+                                            {% endif %}
+                                            <a href="" class="dropdown-item is-delete">Report</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <ul class="menu-list">
-                                <li class="">
-                                    <p>{{ comment.comment_content }}</p>
-                                </li>
-                            </ul>
-                        <li>
+                        </article>    
+
+
                         {% empty %}
                             <h3 class="has-text-centered">No Comments Yet (:</h3>
                         {% endfor %}
