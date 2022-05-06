@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+<p></p>
+{% block title %} Create User Profile{% endblock title %}
+<span></span>
+{% load crispy_forms_tags %} {% block body %}
+<form action="" method="post">
+    {% csrf_token %} {{ form|crispy}}
+    <div class="field">
+        <div class="control">
+            <button class="button is-dark">Submit</button>
+        </div>
+    </div>
+</form>
+{% endblock body %}

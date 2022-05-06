@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import PostForm, RegisterForm, CommentForm
-from .models import Post, Comment
+from .forms import PostForm, RegisterForm, CommentForm, UserProfileForm
+from .models import Post, Comment, UserProfile
 
 # Create your views here.
 
@@ -21,6 +21,29 @@ def index(request):
             post.delete()
 
     return render(request, 'main/index.html', {'posts': posts})
+
+
+@login_required(login_url='/login')
+def create_userprofile(request):
+
+    is_profile_exists = UserProfile.objects.filter(id=request.user.id)
+    if is_profile_exists:
+        return redirect('/index')
+
+    if request.method == "POST":
+        form = UserProfileForm(request.POST)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.author = request.user
+            profile.save()
+            return redirect("/index")
+    else:
+        form = UserProfileForm()
+    return render(request, 'main/create-userprofile.html',
+                  {
+                      'form': form,
+                      'is_profile_exists': is_profile_exists
+                  })
 
 
 @login_required(login_url='/login')

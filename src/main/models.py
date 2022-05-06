@@ -14,13 +14,14 @@ class Post(models.Model):
     def __str__(self):
         return f'{self.title} \n {self.content}'
 
-# class UserProfile(models.Model):
-#     author = models.OneToOneField(User, on_delete=models.CASCADE)
-#     bio = models.TextField(blank=True)
-#     # phoneNumber = models.PhoneNumberField()
 
-#     def __str__(self):
-#         return f'{self.author} /n {self.bio}'
+class UserProfile(models.Model):
+    author = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True)
+    # phoneNumber = models.PhoneNumberField()
+
+    def __str__(self):
+        return f'{self.author} /n {self.bio}'
 
 
 class Comment(models.Model):
