@@ -16,7 +16,8 @@ class Post(models.Model):
 
 
 class UserProfile(models.Model):
-    author = models.OneToOneField(User, on_delete=models.CASCADE)
+    author = models.OneToOneField(
+        User, related_name='user_profile', on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
     # phoneNumber = models.PhoneNumberField()
 

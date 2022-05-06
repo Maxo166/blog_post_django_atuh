@@ -48,7 +48,10 @@
                 <div class="navbar-item">
                     {% if user.is_authenticated %}
                     <div class="buttons">
-                        <a href="" class="button is-small is-white">
+                        <a
+                            href="user/view_profile/{{user.id}}"
+                            class="button is-small is-white"
+                        >
                             Hi, <strong> {{ user.username }}</strong>
                         </a>
                         <a href="/logout" class="button is-small is-light">

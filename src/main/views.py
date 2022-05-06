@@ -24,6 +24,13 @@ def index(request):
 
 
 @login_required(login_url='/login')
+def view_userprofile(request, id):
+    userprofile = UserProfile.objects.filter(
+        author_id=id).first()
+    return render(request, 'main/view-userprofile.html', {'userprofile': userprofile})
+
+
+@login_required(login_url='/login')
 def create_userprofile(request):
     is_profile_exists = UserProfile.objects.filter(
         author_id=request.user.id).first()
