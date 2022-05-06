@@ -25,9 +25,11 @@ def index(request):
 
 @login_required(login_url='/login')
 def create_userprofile(request):
-
-    is_profile_exists = UserProfile.objects.filter(id=request.user.id)
+    is_profile_exists = UserProfile.objects.filter(
+        author_id=request.user.id).first()
     if is_profile_exists:
+        messages.info(
+            request, 'You already created your profile,/ now you can edit it, but you can\'t create anothor one')
         return redirect('/index')
 
     if request.method == "POST":
