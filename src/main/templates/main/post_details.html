@@ -90,20 +90,20 @@
                                 </nav>
                             </div>
                             <div class="media-right">
-                                <div class="dropdown is-right is-hoverable">
-                                    <div class="dropdown-trigger">
+                                <div class="dropdown is-right" >
+                                    <div class="dropdown-trigger comment-dropdown-trigger" id="comment-dropdown-trigger">
                                         <button class="button is-white is-samll pr-0" aria-haspopup="true" aria-controls="dropdown-menu4">
-                                        <span>{% include "main/feather-vertical-more-icon.html" %}</span>
-                                        
+                                            <span>{% include "main/feather-vertical-more-icon.html" %}</span>                                        
                                         </button>
                                     </div>
-                                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                                    <div class="dropdown-menu comment-dropdown-menu" id="comment-dropdown-menu" role="menu">
                                         <div class="dropdown-content">
                                             {% if user == comment.author %}
-                                                <a href="" class="dropdown-item"
+                                                <a href="" class="dropdown-item is-flex"
                                                     name="edit-comment-btn"
-                                                    value="{{ comment.id }}">Edit</a>
-                                                <a href="" class="dropdown-item is-delete">Delete</a>
+                                                    value="{{ comment.id }}">{% include 'main/feather-edit-icon.html' %} <span class='pl-3'> Edit </span></a>
+                                                <a href="" class="dropdown-item is-delete is-flex">
+                                                    {% include "main/feather-trash-icon.html" %}<span class='pl-3'> Delete</span></a>
                                                 <div class="dropdown-divider"></div>
                                             {% endif %}
                                             <a href="" class="dropdown-item is-delete">Report</a>

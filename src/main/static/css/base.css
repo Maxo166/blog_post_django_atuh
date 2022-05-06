@@ -4,7 +4,7 @@
     font-size: 1rem;
 }
 @media screen and (min-width: 1024px){
-    .navbar {
+    nav.navbar {
         min-height: 4rem;
     }
 }
@@ -93,4 +93,9 @@ div.field label.label span.asterisk{
 a.user-link {
     padding: 0px;
     text-decoration: underline;
+}
+
+svg.feather.feather-edit,
+svg.feather.feather-trash {
+    color: #4a4a4a;
 }
