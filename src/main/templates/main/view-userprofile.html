@@ -2,8 +2,20 @@
 <p></p>
 {% block title %} View User Profile{% endblock title %}
 <span></span>
-{% load crispy_forms_tags %} {% block body %}
+{% block body %}
 <div>
+    {% if userprofile|length == 0 %} {% if user == userprofile.author %}
+    <div>
+        <p>You haven't create your profile yet,</p>
+        <div class="field">
+            <div class="control">
+                <button class="button">Add Your Profile</button>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p>No user profile yet,</p>
+    {% endif %} {% else %}
     <p>{{userprofile.author.username}}</p>
     <p>{{userprofile.author.email}}</p>
     <p>{{userprofile.bio}}</p>
@@ -12,6 +24,6 @@
     <p>Last Login: {{userprofile.author.last_login}}</p>
     <p>{{userprofile.author.logout}}</p>
     <p>is supperuser: {{userprofile.author.date_joined}}</p>
-    {% endif %}
+    {% endif %} {% endif %}
 </div>
 {% endblock body %}

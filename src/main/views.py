@@ -24,6 +24,13 @@ def index(request):
 
 
 @login_required(login_url='/login')
+def delete_comment(request, id):
+    comment = Comment.objects.get(pk=id)
+    comment.delete()
+    return redirect('post_details', id=comment.post_id)
+
+
+@login_required(login_url='/login')
 def view_userprofile(request, id):
     userprofile = UserProfile.objects.filter(
         author_id=id).first()

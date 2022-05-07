@@ -102,8 +102,10 @@
                                                 <a href="" class="dropdown-item is-flex"
                                                     name="edit-comment-btn"
                                                     value="{{ comment.id }}">{% include 'main/feather-edit-icon.html' %} <span class='pl-3'> Edit </span></a>
-                                                <a href="" class="dropdown-item is-delete is-flex">
-                                                    {% include "main/feather-trash-icon.html" %}<span class='pl-3'> Delete</span></a>
+                                                <a href="{% url 'delete_comment' comment.id %}" 
+                                                    class="dropdown-item is-delete is-flex is-danger is-light">
+                                                    {% include "main/feather-trash-icon.html" %}<span class='pl-3'> Delete</span>
+                                                </a>
                                                 <div class="dropdown-divider"></div>
                                             {% endif %}
                                             <a href="" class="dropdown-item is-delete">Report</a>
