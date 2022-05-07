@@ -110,7 +110,7 @@ def update_post(request, id):
         post = form.save(commit=False)
         post.save()
         messages.success(request, "You successfully updated the post")
-        # return redirect('/index')
+        # return redirect('index')
     else:
         messages.error(
             'The form was not updated successfully. Please enter in a title and content')

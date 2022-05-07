@@ -1,6 +1,20 @@
 {% extends 'main/base.html' %} {% block title %}Post Details{% endblock title %}
 <span></span>
 {% load crispy_forms_tags %} {% block body %}
+
+{% if user == post_detail.author %}
+<div class="columns">
+    <div class="column is-9 actions">
+        <div class="is-flex is-justify-content-space-between">
+            <p class='menu-label m-0'>Action</p>
+            <div>
+                <a href="{% url 'update_post' post_detail.id %} ">Edit</a> | 
+                <a href="">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>    
+{% endif %}
 <div class="columns">
     <div class="column is-9">
         <div

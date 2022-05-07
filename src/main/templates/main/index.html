@@ -46,7 +46,9 @@
                     >View</a
                 >
                 {% if user == post.author %}
-                <a href="edit_post/{{post.id}}" class="card-footer-item"
+                <a
+                    href="{% url 'post_details' post.id %}"
+                    class="card-footer-item"
                     >Edit</a
                 >
                 {% csrf_token %}

@@ -99,3 +99,9 @@ svg.feather.feather-edit,
 svg.feather.feather-trash {
     color: #4a4a4a;
 }
+section.section.comment-section {
+    padding: 3rem 0px !important;
+}
+.actions {
+    border-bottom: 1px solid #eee;
+}
