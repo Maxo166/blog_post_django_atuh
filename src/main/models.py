@@ -19,6 +19,11 @@ class UserProfile(models.Model):
     author = models.OneToOneField(
         User, related_name='user_profile', on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
+    profile_image = models.ImageField(
+        upload_to='images/profile_pictures', blank=True, null=True)
+    facebook_url = models.CharField(max_length=300, blank=True, null=True)
+    instagram_url = models.CharField(max_length=300, blank=True, null=True)
+    linkedin_url = models.CharField(max_length=300, blank=True, null=True)
     # phoneNumber = models.PhoneNumberField()
 
     def __str__(self):
